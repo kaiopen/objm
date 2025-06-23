@@ -27,7 +27,7 @@ Mamba has made its debut in several visual tasks, but a more effective scanning 
 
 | Method | Input Size | GFLOPs | Params.(M) | Acc.(%) | Downloads |
 |  :---: |    :---:   |  :---: |    :---:   |  :---:  |   :----:  |
-|   ObjM | 224&times;224 | 2.9 | 10.1 | 78.1 | - |
+|   ObjM | 224&times;224 | 2.9 | 10.1 | 78.1 | [objm.pt](./checkpoints/IN_objm.yaml/objm.pt) |
 
 ### Camouflaged Object Detection
 
@@ -56,7 +56,7 @@ Mamba has made its debut in several visual tasks, but a more effective scanning 
         <td>0.061</td><td>0.783</td><td>0.841</td><td>0.895</td>
         <td>0.029</td><td>0.743</td><td>0.842</td><td>0.904</td>
         <td>0.041</td><td>0.803</td><td>0.863</td><td>0.912</td>
-        <td>-</td>
+        <td><a href="./checkpoints/COD4040_objm.yaml/cod.pt">cod.pt</a></td>
     </tr>
 </table>
 
@@ -87,7 +87,7 @@ Mamba has made its debut in several visual tasks, but a more effective scanning 
         <td>0.027</td><td>0.929</td><td>0.933</td><td>0.931</td>
         <td>0.023</td><td>0.919</td><td>0.927</td><td>0.961</td>
         <td>0.027</td><td>0.874</td><td>0.906</td><td>0.919</td>
-        <td>-</td>
+        <td><a href="./checkpoints/DUTS-TR_objm.yaml/sod.pt">sod.pt</a></td>
     </tr>
 </table>
 
