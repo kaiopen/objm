@@ -1,0 +1,11 @@
+---
+neck:
+  type: DownSum
+  in_channels: [32, 64, 128, 256]
+  out_channels: [128, 256, 512, 1024]
+  padding_mode: zeros
+  activation: relu
+  activation_kw:
+    inplace: True
+
+...

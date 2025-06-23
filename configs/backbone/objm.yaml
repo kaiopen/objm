@@ -1,0 +1,89 @@
+---
+backbone:
+  type: ObjM
+
+  stem:
+    in_channels: 3
+    out_channels: 64
+    padding_mode: zeros
+    activation: relu
+    activation_kw:
+      inplace: True
+
+  stages:
+    -  # stage 1
+      blocks:
+        -
+          in_channels: 64
+          out_channels: 256
+          ~b: ~utils.bottleneck
+        -
+          in_channels: 256
+          out_channels: 256
+          ~b: ~utils.bottleneck
+
+    -  # stage 2
+      transition:
+        in_channels: [256]
+        out_channels: [32, 64]
+        ~trans: ~utils.transition
+      branches:
+        -  # module 0
+          in_channels: [32, 64]
+          former: ~utils.former
+          depth: 2
+          scans: [H+, H-]
+      fusion:
+        in_channels: [32, 64]
+        ~fus: ~utils.fusion
+
+    -  # stage 3
+      transition:
+        in_channels: [32, 64]
+        out_channels: [32, 64, 128]
+        ~trans: ~utils.transition
+      branches:
+        -  # module 0
+          in_channels: [32, 64, 128]
+          former: ~utils.former
+          depth: 2
+          scans: [H+, H-]
+        -  # module 1
+          in_channels: [32, 64, 128]
+          former: ~utils.former
+          depth: 2
+          scans: [W+, W-]
+        -  # module 2
+          in_channels: [32, 64, 128]
+          former: ~utils.former
+          depth: 2
+          scans: [H+, H-]
+        -  # module 3
+          in_channels: [32, 64, 128]
+          former: ~utils.former
+          depth: 2
+          scans: [W+, W-]
+      fusion:
+        in_channels: [32, 64, 128]
+        ~fus: ~utils.fusion
+
+    -  # stage 4
+      transition:
+        in_channels: [32, 64, 128]
+        out_channels: [32, 64, 128, 256]
+        ~trans: ~utils.transition
+      proposer:
+        in_channels: [32, 64, 128, 256]
+        padding_mode: zeros
+      branches:
+        in_channels: [32, 64, 128, 256]
+        former: ~utils.former
+        depth: 4
+        k: 0.8
+      fusion:
+        in_channels: [32, 64, 128, 256]
+        ~fus: ~utils.fusion
+
+  drop: 0.05
+
+...

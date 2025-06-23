@@ -1,0 +1,18 @@
+---
+data:
+  type: Tiny-ImageNet
+  root: data/Tiny-ImageNet
+  num_category: default
+  size: 256
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+
+preprocess:
+  type: Tiny-ImageNet
+  root: ~data.root
+  size: ~data.size
+  mean: ~data.mean
+  std: ~data.std
+  dst: tmp/Tiny-ImageNet
+
+...

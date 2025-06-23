@@ -1,0 +1,51 @@
+---
+configs:
+  - data/IN.yaml
+  - utils.yaml
+  - backbone/objm.yaml
+  - neck/ds.yaml
+  - header/al.yaml
+
+dataset:
+  type: ImageNet
+  root: ~preprocess.dst
+  num_category: ~data.num_category
+  size: ~data.size
+  mean: ~data.mean
+  std: ~data.std
+  cutmix: ~run.cutmix
+  fgmix: ~run.fgmix
+
+model:
+  backbone: ~backbone
+  neck: ~neck
+  header: ~header
+
+criterion:
+  type: ClsSeg
+  smoothing: 0.1
+
+optimizer:
+  type: AdamW
+  lr: ~run.lr
+  weight_decay: 0.05
+
+scheduler:
+  type: CosineAnnealingWarmRestarts
+  T_0: 5
+  T_mult: 1
+  eta_min: 0.00001
+
+run:
+  batch_size: 64
+  num_worker: 24
+  end_epoch: 300
+  resume: False
+  checkpoint: null
+  acc: 256
+  amp: True
+  lr: 0.0001
+  cutmix: False
+  fgmix: False
+
+...

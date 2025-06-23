@@ -1,0 +1,30 @@
+utils:
+  bottleneck:
+    stride: 1
+    padding_mode: zeros
+    activation: relu
+    activation_kw:
+      inplace: True
+
+  former:
+    attn: Mamba  
+    # attn: MambaBlock  # for FLOPs & Params.
+    attn_kw:
+      state_channels: 64
+      expansion: 2
+      kernel_size: 4
+    ffn: EinFFT
+    ffn_kw:
+      num_block: 4
+
+  transition:
+    padding_mode: zeros
+    activation: relu
+    activation_kw:
+      inplace: True
+
+  fusion:
+    padding_mode: zeros
+    activation: relu
+    activation_kw:
+      inplace: True

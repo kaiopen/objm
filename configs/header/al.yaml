@@ -1,0 +1,7 @@
+---
+header:
+  type: AvgLinear
+  in_channels: 1024
+  out_channels:  ~data.num_category
+
+...
